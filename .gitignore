@@ -1,0 +1,5 @@
+.env.php
+/storage/cache/
+/storage/logs/
+/public/media/
+storage/install.lock

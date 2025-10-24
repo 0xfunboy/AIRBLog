@@ -1,0 +1,83 @@
+<?php
+declare(strict_types=1);
+
+return [
+    'agents' => [
+        [
+            'name' => 'AIR3',
+            'slug' => 'air3',
+            'chain' => 'Solana',
+            'status' => 'Live',
+            'summary' => 'Flagship Solana agent delivering live charts, on-chain analysis, and social automation.',
+            'site_url' => 'https://air3solana.xyz',
+            'image_url' => '/media/agents/air3.png',
+            'badge' => 'Live',
+            'featured_order' => 1,
+        ],
+        [
+            'name' => 'LAIR',
+            'slug' => 'lair',
+            'chain' => 'Cronos',
+            'status' => 'Live',
+            'summary' => 'Cronos-native agent for ecosystem coverage and automated execution.',
+            'site_url' => 'https://laircronos.xyz',
+            'image_url' => '/media/agents/lair.png',
+            'badge' => 'Live',
+            'featured_order' => 2,
+        ],
+        [
+            'name' => 'PolarAI',
+            'slug' => 'polar',
+            'chain' => 'Berachain',
+            'status' => 'Live',
+            'summary' => 'Berachain analytics agent focused on flows, sentiment, and opportunity alerts.',
+            'site_url' => 'https://polarberai.xyz',
+            'image_url' => '/media/agents/polar.png',
+            'badge' => 'Live',
+            'featured_order' => 3,
+        ],
+        [
+            'name' => 'Base Agent',
+            'slug' => 'base',
+            'chain' => 'Base',
+            'status' => 'In Development',
+            'summary' => 'Next-gen agent expanding to the Base ecosystem.',
+            'site_url' => 'https://airewardrop.xyz',
+            'image_url' => '/media/agents/base.png',
+            'badge' => 'Soon',
+            'featured_order' => 4,
+        ],
+        [
+            'name' => 'BNB Agent',
+            'slug' => 'bnb',
+            'chain' => 'BNB Chain',
+            'status' => 'In Development',
+            'summary' => 'Upcoming agent specialized on BNB Chain opportunities.',
+            'site_url' => 'https://airewardrop.xyz',
+            'image_url' => '/media/agents/bnb.png',
+            'badge' => 'Soon',
+            'featured_order' => 5,
+        ],
+        [
+            'name' => 'Avalanche Agent',
+            'slug' => 'avax',
+            'chain' => 'Avalanche',
+            'status' => 'In Development',
+            'summary' => 'Avalanche-focused research and trading agent.',
+            'site_url' => 'https://airewardrop.xyz',
+            'image_url' => '/media/agents/avax.png',
+            'badge' => 'Soon',
+            'featured_order' => 6,
+        ],
+    ],
+    'agent_post_types' => [
+        [
+            'key' => 'signal',
+            'label' => 'Trading Signal',
+        ],
+        [
+            'key' => 'news',
+            'label' => 'News Update',
+        ],
+    ],
+];
