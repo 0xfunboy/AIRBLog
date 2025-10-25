@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" rx="48" fill="#0b0b12" />
+  <defs>
+    <radialGradient id="g1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 200) scale(500)">
+      <stop stop-color="#35e0ff" stop-opacity="0.5" />
+      <stop offset="1" stop-color="#35e0ff" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="g2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 600) scale(500)">
+      <stop stop-color="#f03a3a" stop-opacity="0.4" />
+      <stop offset="1" stop-color="#f03a3a" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" rx="48" fill="url(#g1)" />
+  <rect width="1200" height="800" rx="48" fill="url(#g2)" />
+  <g stroke="#35e0ff" stroke-opacity="0.45" stroke-width="4">
+    <circle cx="600" cy="400" r="220" />
+    <circle cx="600" cy="400" r="160" stroke="#f03a3a" stroke-opacity="0.4" />
+    <circle cx="600" cy="400" r="100" stroke="#ffffff" stroke-opacity="0.35" />
+  </g>
+  <path d="M600 270L660 400L600 530L540 400Z" fill="#35e0ff" fill-opacity="0.6" />
+  <circle cx="600" cy="400" r="52" fill="#f03a3a" fill-opacity="0.6" />
+  <rect x="390" y="150" width="420" height="90" rx="12" fill="#121226" stroke="#35e0ff" stroke-opacity="0.3" stroke-width="2" />
+  <text x="600" y="210" text-anchor="middle" font-family="Inter, sans-serif" font-size="40" font-weight="600" fill="#f5f7ff">AI Agent Interface</text>
+</svg>

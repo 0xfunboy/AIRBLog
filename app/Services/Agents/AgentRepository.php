@@ -19,6 +19,11 @@ final class AgentRepository
         return $this->agent->allOrdered();
     }
 
+    public function listVisible(): array
+    {
+        return $this->agent->visible();
+    }
+
     public function findById(int $id): ?array
     {
         return $this->agent->find($id);

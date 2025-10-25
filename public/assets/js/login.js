@@ -120,11 +120,11 @@ if (connectButton) {
           optionalChains: [137, 42161, 10, 56, 8453],
           rpcMap: { 1: rpcUrl },
           methods: ['eth_sendTransaction', 'eth_signTransaction', 'eth_sign', 'personal_sign', 'eth_signTypedData'],
-          metadata: {
+            metadata: {
             name: 'AG Blog Admin',
             description: 'Secure admin access',
             url: window.location.origin,
-            icons: ['https://ag.airewardrop.xyz/favicon.svg'],
+            icons: ['https://blog.airewardrop.xyz/favicon.svg'],
           },
         });
         await externalProvider.connect();

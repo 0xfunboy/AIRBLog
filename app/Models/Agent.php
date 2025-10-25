@@ -12,6 +12,7 @@ final class Agent extends Model
         'slug',
         'chain',
         'status',
+        'is_visible',
         'summary',
         'site_url',
         'image_url',
@@ -23,6 +24,15 @@ final class Agent extends Model
     {
         $stmt = $this->db->query(
             "SELECT * FROM {$this->table} ORDER BY featured_order ASC, name ASC"
+        );
+
+        return $stmt->fetchAll() ?: [];
+    }
+
+    public function visible(): array
+    {
+        $stmt = $this->db->query(
+            "SELECT * FROM {$this->table} WHERE is_visible = 1 ORDER BY featured_order ASC, name ASC"
         );
 
         return $stmt->fetchAll() ?: [];

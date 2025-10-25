@@ -95,12 +95,13 @@ final class SeedImporter
         }
 
         $stmt = $pdo->prepare(
-            'INSERT INTO agents (name, slug, chain, status, summary, site_url, image_url, badge, featured_order)
-             VALUES (:name, :slug, :chain, :status, :summary, :site_url, :image_url, :badge, :featured_order)
+            'INSERT INTO agents (name, slug, chain, status, is_visible, summary, site_url, image_url, badge, featured_order)
+             VALUES (:name, :slug, :chain, :status, :is_visible, :summary, :site_url, :image_url, :badge, :featured_order)
              ON DUPLICATE KEY UPDATE
                 name = VALUES(name),
                 chain = VALUES(chain),
                 status = VALUES(status),
+                is_visible = VALUES(is_visible),
                 summary = VALUES(summary),
                 site_url = VALUES(site_url),
                 image_url = VALUES(image_url),
@@ -115,6 +116,7 @@ final class SeedImporter
                 'slug' => $agent['slug'] ?? self::slugify($agent['name'] ?? ''),
                 'chain' => $agent['chain'] ?? '',
                 'status' => $agent['status'] ?? 'Live',
+                'is_visible' => (int)($agent['is_visible'] ?? 1),
                 'summary' => $agent['summary'] ?? null,
                 'site_url' => $agent['site_url'] ?? '',
                 'image_url' => $agent['image_url'] ?? '',

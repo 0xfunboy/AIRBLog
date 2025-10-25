@@ -102,6 +102,7 @@ final class AgentsController extends Controller
             'slug' => $slug,
             'chain' => $chain,
             'status' => $status,
+            'is_visible' => isset($input['is_visible']) ? 1 : 0,
             'site_url' => trim((string)($input['site_url'] ?? '')),
             'image_url' => trim((string)($input['image_url'] ?? '')),
             'summary' => trim((string)($input['summary'] ?? '')),

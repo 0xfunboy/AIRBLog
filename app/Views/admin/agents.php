@@ -51,6 +51,12 @@ $statuses = $statuses ?? ['Live', 'In Development'];
                     <label>Summary</label>
                     <textarea name="summary" rows="3"><?= htmlspecialchars((string)($agent['summary'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></textarea>
                 </div>
+                <div style="margin-top:12px;">
+                    <label style="display:flex;align-items:center;gap:8px;font-weight:500;">
+                        <input type="checkbox" name="is_visible" value="1" <?= !empty($agent['is_visible']) ? 'checked' : ''; ?>>
+                        Show on home
+                    </label>
+                </div>
                 <div style="display:flex;justify-content:flex-end;margin-top:16px;">
                     <button type="submit" class="button">Save changes</button>
                 </div>
@@ -97,6 +103,12 @@ $statuses = $statuses ?? ['Live', 'In Development'];
         <div>
             <label>Summary</label>
             <textarea name="summary" rows="3"></textarea>
+        </div>
+        <div style="margin-top:12px;">
+            <label style="display:flex;align-items:center;gap:8px;font-weight:500;">
+                <input type="checkbox" name="is_visible" value="1" checked>
+                Show on home
+            </label>
         </div>
         <div style="display:flex;justify-content:flex-end;margin-top:16px;">
             <button type="submit" class="button">Create agent</button>

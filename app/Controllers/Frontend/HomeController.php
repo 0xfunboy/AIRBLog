@@ -18,7 +18,7 @@ final class HomeController extends Controller
 
     public function index(): void
     {
-        $agents = $this->agents->listAll();
+        $agents = $this->agents->listVisible();
 
         View::render('layouts/public', [
             'title' => 'Agents',

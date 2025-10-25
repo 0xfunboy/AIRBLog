@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS agents (
     slug VARCHAR(120) NOT NULL UNIQUE,
     chain VARCHAR(80) NOT NULL,
     status ENUM('Live','In Development') NOT NULL DEFAULT 'Live',
+    is_visible TINYINT(1) NOT NULL DEFAULT 1,
     summary TEXT NULL,
     site_url VARCHAR(255) NOT NULL,
     image_url VARCHAR(255) NOT NULL,
