@@ -27,7 +27,7 @@ final class PostSlugGenerator
 
         $date = new DateTimeImmutable('now', new DateTimeZone(config('app.timezone', 'UTC')));
 
-        $segments = [
+        $baseSegments = [
             $agentSlug,
             $this->sanitizeType($typeKey),
             $date->format('Y'),
@@ -35,19 +35,23 @@ final class PostSlugGenerator
             $date->format('d'),
         ];
 
+        $slugParts = [];
         $typeKey = strtolower($typeKey);
         if ($typeKey === 'signal') {
-            if ($ticker) {
-                $segments[] = strtolower(preg_replace('/[^a-z0-9]/i', '', $ticker) ?? '');
+            $tickerNormalized = $ticker ? strtolower(preg_replace('/[^a-z0-9]/i', '', $ticker) ?? '') : '';
+            if ($tickerNormalized !== '') {
+                $slugParts[] = $tickerNormalized;
             }
-            if ($timeframe) {
-                $segments[] = strtolower($this->sanitizeTimeframe($timeframe));
+            $timeframeNormalized = $timeframe ? strtolower($this->sanitizeTimeframe($timeframe)) : '';
+            if ($timeframeNormalized !== '') {
+                $slugParts[] = $timeframeNormalized;
             }
         }
+        $slugParts[] = $this->slugifyShortTitle($title);
 
-        $segments[] = $this->slugifyShortTitle($title);
+        $slugTail = implode('-', array_filter($slugParts, static fn (string $segment) => $segment !== ''));
 
-        $segments = array_values(array_filter($segments, static fn (string $segment) => $segment !== ''));
+        $segments = array_merge($baseSegments, [$slugTail]);
         $slug = implode('/', $segments);
         $slug = $this->ensureMaxLength($slug, 255);
 

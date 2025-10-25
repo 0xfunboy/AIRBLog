@@ -1,7 +1,8 @@
 <?php
-$siteName = config('app.name', 'AG Blog');
+$siteName = config('app.name', 'AIR Agent Blog');
 $siteUrl = rtrim((string)config('app.url', ''), '/');
 $logo = '/assets/svg-default/logo/site-logo.svg';
+$mainSite = 'https://airewardrop.xyz';
 ?>
 <header class="ag-header">
     <div class="ag-header__inner">
@@ -11,9 +12,13 @@ $logo = '/assets/svg-default/logo/site-logo.svg';
         </a>
         <nav class="ag-nav">
             <a href="/">Home</a>
-            <a href="/admin/login">Dashboard</a>
-            <a href="/healthz">Status</a>
+            <a href="/status">Status</a>
+            <a href="/sitemap-info">Sitemap</a>
+            <a href="/admin/login">Admin</a>
         </nav>
-        <a class="ag-cta" href="<?= htmlspecialchars($siteUrl !== '' ? $siteUrl . '/admin/login' : '/admin/login', ENT_QUOTES, 'UTF-8'); ?>">Wallet Login</a>
+        <div class="ag-header__actions">
+            <a class="ag-cta ag-cta--ghost" href="<?= htmlspecialchars($mainSite, ENT_QUOTES, 'UTF-8'); ?>" target="_blank" rel="noopener">AIRewardrop</a>
+            <a class="ag-cta" href="<?= htmlspecialchars($siteUrl !== '' ? $siteUrl . '/admin/login' : '/admin/login', ENT_QUOTES, 'UTF-8'); ?>">Wallet Login</a>
+        </div>
     </div>
 </header>

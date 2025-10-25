@@ -10,6 +10,7 @@ final class AgentApiKey extends Model
     protected array $fillable = [
         'agent_id',
         'key_hash',
+        'plain_token',
         'label',
         'is_active',
         'last_used_at',

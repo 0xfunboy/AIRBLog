@@ -91,6 +91,11 @@ $pageTitle = $title !== '' ? $title . ' | ' . $siteName : $siteName;
         .ag-nav a:hover {
             color: #fff;
         }
+        .ag-header__actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
         .ag-cta {
             padding: 10px 16px;
             border-radius: 999px;
@@ -99,10 +104,108 @@ $pageTitle = $title !== '' ? $title . ' | ' . $siteName : $siteName;
             font-weight: 600;
             text-decoration: none;
         }
+        .ag-cta--ghost {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
         .ag-container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 48px 24px 80px;
+        }
+        .ag-section {
+            margin-bottom: 48px;
+        }
+        .ag-title {
+            font-size: 42px;
+            margin: 0 0 12px;
+            font-weight: 700;
+        }
+        .ag-lead {
+            margin: 0 0 28px;
+            font-size: 17px;
+            color: rgba(246,247,255,0.75);
+            max-width: 640px;
+            line-height: 1.6;
+        }
+        .ag-agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .ag-agent-card {
+            display: block;
+            padding: 24px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.25s ease, border 0.25s ease, box-shadow 0.25s ease;
+        }
+        .ag-agent-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(53,224,255,0.6);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+        }
+        .ag-agent-card__head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .ag-agent-card__logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.14);
+            object-fit: cover;
+        }
+        .ag-status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .ag-status-card {
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+        }
+        .ag-status-card.is-ok {
+            border-color: rgba(16,185,129,0.4);
+            background: rgba(16,185,129,0.08);
+        }
+        .ag-status-card.is-fail {
+            border-color: rgba(240,58,58,0.4);
+            background: rgba(240,58,58,0.08);
+        }
+        .ag-status-card__label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(246,247,255,0.7);
+        }
+        .ag-status-card__value {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+        .ag-status-panel {
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+            padding: 24px;
+            margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .ag-status-panel__text {
+            margin: 0;
+            color: rgba(246,247,255,0.78);
+            line-height: 1.6;
         }
         .ag-footer {
             border-top: 1px solid rgba(255,255,255,0.08);

@@ -29,7 +29,7 @@ function ensureColumn(\PDO $pdo, string $table, string $column, string $definiti
         return;
     }
 
-    $pdo->exec(sprintf('ALTER TABLE `%s` ADD COLUMN %s', $table, $definition));
+    $pdo->exec(sprintf('ALTER TABLE `%s` ADD COLUMN `%s` %s', $table, $column, $definition));
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$alreadyInstalled) {
@@ -41,7 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$alreadyInstalled) {
         }
 
         $pdo->exec($schema);
-        ensureColumn($pdo, 'agents', 'is_visible', "TINYINT(1) NOT NULL DEFAULT 1 AFTER status");
+        ensureColumn($pdo, 'agents', 'is_visible', "TINYINT(1) NOT NULL DEFAULT 1 AFTER `status`");
+        ensureColumn($pdo, 'agent_api_keys', 'plain_token', "VARCHAR(128) NULL AFTER `key_hash`");
         SeedImporter::ensureSeeded();
 
         if (!is_dir(dirname($lockFile)) && !mkdir(dirname($lockFile), 0775, true) && !is_dir(dirname($lockFile))) {

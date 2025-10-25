@@ -61,4 +61,28 @@ final class ApiKeysController extends Controller
 
         $this->redirect('/admin/api-keys');
     }
+
+    public function show(string $agentId): void
+    {
+        $id = (int)$agentId;
+        $agent = $this->agents->findById($id);
+        if (!$agent) {
+            Flash::set('error', 'Agent not found.');
+            $this->redirect('/admin/api-keys');
+            return;
+        }
+
+        $latestKey = $this->keys->latestActiveForAgent($id);
+        $endpoint = rtrim((string)config('app.url', ''), '/') . '/api/v1/posts';
+
+        View::render('layouts/admin', [
+            'title' => 'API Guide',
+            'contentTemplate' => 'admin/api-guide',
+            'contentData' => [
+                'agent' => $agent,
+                'latestKey' => $latestKey,
+                'endpoint' => $endpoint,
+            ],
+        ]);
+    }
 }

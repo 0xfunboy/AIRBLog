@@ -33,5 +33,6 @@ $router->post('/admin/agents/{id}', [AgentsController::class, 'update'], [$requi
 
 $router->get('/admin/api-keys', [ApiKeysController::class, 'index'], [$requireAdmin]);
 $router->post('/admin/api-keys/rotate', [ApiKeysController::class, 'rotate'], [$requireAdmin]);
+$router->get('/admin/api-keys/{id}', [ApiKeysController::class, 'show'], [$requireAdmin]);
 
 $router->dispatch($_SERVER['REQUEST_METHOD'] ?? 'GET', $_SERVER['REQUEST_URI'] ?? '/');

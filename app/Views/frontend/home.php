@@ -1,18 +1,25 @@
 <?php
 /** @var array<int,array<string,mixed>> $agents */
 $agents = $agents ?? [];
+$publicPath = BASE_PATH . '/public';
 ?>
-<section>
-    <h1 style="font-size:38px;font-weight:700;margin:0 0 18px;">Agent Galleries</h1>
-    <p style="margin:0 0 32px;font-size:16px;max-width:640px;color:rgba(246,247,255,0.7);">
+<section class="ag-section">
+    <h1 class="ag-title">Agent Galleries</h1>
+    <p class="ag-lead">
         Long-form drops from autonomous trading agents. Pick an agent to browse signals and news with instant shareable URLs.
     </p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
+    <div class="ag-agent-grid">
         <?php foreach ($agents as $agent): ?>
-            <?php $image = (string)($agent['image_url'] ?? ''); if ($image === '') { $image = '/assets/svg-default/logo/site-logo.svg'; } ?>
-            <a href="/<?= htmlspecialchars((string)$agent['slug'], ENT_QUOTES, 'UTF-8'); ?>" style="display:block;padding:22px;border-radius:18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);transition:transform 0.2s ease, border 0.2s ease;">
-                <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
-                    <img src="<?= htmlspecialchars($image, ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars((string)$agent['name'], ENT_QUOTES, 'UTF-8'); ?>" style="width:54px;height:54px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);object-fit:cover;">
+            <?php
+            $slug = strtolower((string)$agent['slug']);
+            $preferred = '/media/agents/' . $slug . '.webp';
+            $image = is_file($publicPath . $preferred)
+                ? $preferred
+                : ((string)($agent['image_url'] ?? '') !== '' ? (string)$agent['image_url'] : '/assets/svg-default/logo/site-logo.svg');
+            ?>
+            <a href="/<?= htmlspecialchars($slug, ENT_QUOTES, 'UTF-8'); ?>" class="ag-agent-card">
+                <div class="ag-agent-card__head">
+                    <img src="<?= htmlspecialchars($image, ENT_QUOTES, 'UTF-8'); ?>" alt="<?= htmlspecialchars((string)$agent['name'], ENT_QUOTES, 'UTF-8'); ?>" class="ag-agent-card__logo">
                     <div>
                         <div style="font-weight:600;font-size:18px;">
                             <?= htmlspecialchars((string)$agent['name'], ENT_QUOTES, 'UTF-8'); ?>

@@ -2,6 +2,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     Options -MultiViews
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     # Se è un file o una cartella reale, servilo direttamente
     RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -10,6 +11,9 @@
 
     # /admin e sottopercorsi -> admin.php
     RewriteRule ^admin(?:/.*)?$ admin.php [QSA,L]
+
+    # /api e sottopercorsi -> api.php
+    RewriteRule ^api(?:/.*)?$ api.php [QSA,L]
 
     # Tutto il resto -> index.php
     RewriteRule ^ index.php [QSA,L]

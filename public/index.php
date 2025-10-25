@@ -19,6 +19,7 @@ $router->get('/sitemap.xml', [SitemapController::class, 'index']);
 $router->get('/robots.txt', [RobotsController::class, 'index']);
 
 $router->get('/{agent}', [AgentFeedController::class, 'index']);
+$router->get('/{agent}/{type}/{year}/{month}/{day}/{ticker}/{timeframe}/{slug}', [PostController::class, 'legacyShow']);
 $router->get('/{agent}/{type}', [AgentFeedController::class, 'filtered']);
 $router->get('/{agent}/{type}/{year}/{month}/{day}/{slug}', [PostController::class, 'show']);
 

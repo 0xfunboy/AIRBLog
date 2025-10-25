@@ -1,4 +1,4 @@
--- AG Blog schema
+-- AIR Agent Blog schema
 SET NAMES utf8mb4;
 SET time_zone = '+00:00';
 
@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS agent_api_keys (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     agent_id INT UNSIGNED NOT NULL,
     key_hash CHAR(64) NOT NULL UNIQUE,
+    plain_token VARCHAR(128) NULL,
     label VARCHAR(120) NULL,
     is_active TINYINT(1) NOT NULL DEFAULT 1,
     last_used_at DATETIME NULL,

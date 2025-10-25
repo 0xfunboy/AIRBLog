@@ -21,7 +21,19 @@ final class PostController extends Controller
 
     public function show(string $agent, string $type, string $year, string $month, string $day, string $slug): void
     {
-        $path = sprintf('%s/%s/%s/%s/%s/%s', $agent, $type, $year, $month, $day, $slug);
+        $this->renderPost([$agent, $type, $year, $month, $day, $slug]);
+    }
+
+    public function legacyShow(string $agent, string $type, string $year, string $month, string $day, string $ticker, string $timeframe, string $slug): void
+    {
+        $this->renderPost([$agent, $type, $year, $month, $day, $ticker, $timeframe, $slug]);
+    }
+
+    private function renderPost(array $segments): void
+    {
+        $path = implode('/', $segments);
+
+        $agent = $segments[0] ?? '';
         $post = $this->posts->findPublishedBySlug($path);
         if (!$post) {
             $this->notFound();

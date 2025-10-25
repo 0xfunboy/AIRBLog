@@ -33,6 +33,7 @@ final class AgentApiKeyRepository
         $id = $this->model->create([
             'agent_id' => $agentId,
             'key_hash' => $hash,
+            'plain_token' => $token,
             'label' => $label,
             'is_active' => 1,
         ]);
@@ -67,5 +68,17 @@ final class AgentApiKeyRepository
         $db = Database::connection();
         $stmt = $db->prepare('UPDATE agent_api_keys SET is_active = 0 WHERE id = :id');
         $stmt->execute(['id' => $id]);
+    }
+
+    public function latestActiveForAgent(int $agentId): ?array
+    {
+        $db = Database::connection();
+        $stmt = $db->prepare(
+            'SELECT * FROM agent_api_keys WHERE agent_id = :agent AND is_active = 1 ORDER BY created_at DESC LIMIT 1'
+        );
+        $stmt->execute(['agent' => $agentId]);
+
+        $record = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $record ?: null;
     }
 }
