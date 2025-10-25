@@ -20,7 +20,7 @@ $router->post('/admin/auth/logout', [AuthController::class, 'logout']);
 
 $requireAdmin = new RequireAdmin();
 
-$router->get('/admin', [DashboardController::class, 'redirect'], [$requireAdmin]);
+$router->get('/admin', [DashboardController::class, 'landing'], [$requireAdmin]);
 $router->get('/admin/dashboard', [DashboardController::class, 'index'], [$requireAdmin]);
 
 $router->get('/admin/posts', [PostApprovalsController::class, 'index'], [$requireAdmin]);

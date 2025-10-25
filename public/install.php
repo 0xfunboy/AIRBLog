@@ -14,6 +14,24 @@ $alreadyInstalled = file_exists($lockFile);
 $messages = [];
 $error = null;
 
+/**
+ * @throws Throwable
+ */
+function ensureColumn(\PDO $pdo, string $table, string $column, string $definition): void
+{
+    $stmt = $pdo->prepare(
+        'SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = :table AND COLUMN_NAME = :column'
+    );
+    $stmt->execute(['table' => $table, 'column' => $column]);
+    $exists = (int)$stmt->fetchColumn() > 0;
+
+    if ($exists) {
+        return;
+    }
+
+    $pdo->exec(sprintf('ALTER TABLE `%s` ADD COLUMN %s', $table, $definition));
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$alreadyInstalled) {
     try {
         $pdo = Database::connection();
@@ -23,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$alreadyInstalled) {
         }
 
         $pdo->exec($schema);
+        ensureColumn($pdo, 'agents', 'is_visible', "TINYINT(1) NOT NULL DEFAULT 1 AFTER status");
         SeedImporter::ensureSeeded();
 
         if (!is_dir(dirname($lockFile)) && !mkdir(dirname($lockFile), 0775, true) && !is_dir(dirname($lockFile))) {

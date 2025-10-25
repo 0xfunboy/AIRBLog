@@ -16,7 +16,7 @@ final class DashboardController extends Controller
         $this->posts = $posts ?? new AgentPostRepository();
     }
 
-    public function redirect(): void
+    public function landing(): void
     {
         $this->redirect('/admin/dashboard');
     }
